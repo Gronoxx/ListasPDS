@@ -1,0 +1,78 @@
+#include <stdio.h>
+/*
+2. Escreva uma função em C que recebe um arranjo de números reais v e número de
+elementos n armazenados em v e que retorna a média dos n elementos armazenados em v.
+Assuma que n é menor que o número máximo de elementos do arranjo (e.g. 1000).
+3. Escreva uma função em C que recebe um arranjo de números reais v e número de
+elementos n armazenados em v e que retorna a variância dos n elementos armazenados em v.
+Assuma que n é menor que o número máximo de elementos do arranjo (e.g. 1000).
+4. Escreva uma função em C que recebe um arranjo de números reais v e número de
+elementos n armazenados em v e que retorna o maior dos n elementos armazenados em v.
+Assuma que n é menor que o número máximo de elementos do arranjo (e.g. 1000).
+5. Escreva uma função em C que recebe um arranjo de números reais v e número de
+elementos n armazenados em v e que retorna o menor dos n elementos armazenados em v.
+Assuma que n é menor que o número máximo de elementos do arranjo (e.g. 1000).
+6. Escreva uma função em C que recebe dois arranjoes de números reais u e v e a dimensão n
+dos dois arranjoes e que retorna o produto escalar de u e v. O produto escalar de dois arranjoes é
+dado pela seguinte expressão: u.v = u0.y0 + u1.y1 + u2.y2 + ... + un-1.yn-1. Assuma que n é menor
+que o número máximo de elementos do arranjo (e.g. 1000).
+*/
+float func1(float*arr)
+{
+    int count=0;
+    float resultado=0;
+    for(count;count<1000;count++)
+    {
+        resultado=resultado+arr[count];
+    }
+    resultado=resultado/1000;
+    return (resultado);
+}
+float var(float*arr)
+{
+    float media,resultado;
+    resultado=0;
+    media=func1(arr);
+    int count=0;
+    for(count;count<1000;count++)
+    {
+        resultado+=(arr[count]-media)*(arr[count]-media);
+    }
+    resultado=resultado/999;
+    return resultado;
+    
+}
+float maior(float*arr)
+{
+    int count;
+    float resultado;
+    resultado=arr[0];
+    for (count = 0; count<1000; count++)
+    {
+    if (resultado<arr[count])
+        resultado=arr[count];
+    }
+    return resultado;
+}
+float menor(float*arr)
+{
+    int count;
+    float resultado;
+    resultado=arr[0];
+    for (count = 0; count<1000; count++)
+    {
+    if (resultado>arr[count])
+        resultado=arr[count];
+    }
+    return resultado;
+}
+float prodesc(float*arr,float*arr2)
+{
+    float resultado=0;
+    int count;
+    for (count=0;count<1000;count++)
+    {
+        resultado+= arr[count]*arr2[count];
+    }
+    return resultado;
+}
