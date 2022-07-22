@@ -1,0 +1,140 @@
+#include <stdio.h>
+#include <math.h>
+
+/*
+1.
+a. Descrever em C um tipo para um registro que contenha o número de identificação de um
+indivíduo, um conjunto de pontos (até 18) - em valores inteiros - conseguidos por ele(a) nas
+questões de um concurso.
+b. Escrever um programa principal que defina uma variável do tipo descrito em (a), leia os
+pontos obtidos por um indivíduo e imprima a soma os pontos.
+c. Altere o programa feito em b) para que a descrição do registro deixe em aberto o
+tamanho do vetor e utilize a função definida em 1a) para alocá-lo, conforme o número de
+questões do concurso fornecido pelo usuário.
+2. a. Escreva uma função que recebe como entrada um vetor de números inteiros e devolve
+como saída o maior valor pertencente ao vetor.
+3. (Google Maps) Crie o tipo de dados “Restaurante” que possui como componentes as
+coordenadas de localização X e Y, o nível de preço,e o nome do restaurante. Assuma que
+essas informações estejam em um arquivo o qual possa ser lido.
+a. Faça uma função que imprima todos os restaurantes localizados a um raio de
+distância de no máximo m metros.
+*/
+//qst3
+FILE*file=fopen("E:\\Arquivos C\\Restaurantes.txt" ,"r+t");
+  struct Restaurante
+    {
+        int x,y;
+        int nvlp;
+        char nome[1000];
+    }atual;
+    struct Usuario
+    {
+        int x,y;
+    }user{0,0};
+    
+//qst2
+int maior(int arr[])
+{
+    int count,num=arr[0];
+    for ( count = 0; count < 1000; count++)
+    {
+        if (num<arr[count])
+        num=arr[count];
+    }
+    return num;
+}
+//qst3
+void imprime(float m)
+{
+    int count=0;
+    char linha[100];
+    while (fgets(linha, 100, file) != NULL)
+    {
+        count++;
+        switch (count%4)
+        {
+        case 1:
+            atual.x=atoi(linha);
+            break;        
+        case 2:
+            atual.y=atoi(linha);
+            break;
+        case 3:
+            atual.nvlp=atoi(linha);
+            break;
+        case 0:
+            float dx,dy,d;
+            dx=user.x - atual.x;
+            dy=user.y - atual.y;
+            d=sqrt(dx*dx+dy*dy);
+            if (d<=m)
+            {
+                printf("%s\n", linha);
+            }
+            break;
+        }
+        
+        
+    
+    }
+    
+
+
+}
+
+
+int main()
+{
+    /*
+    //qst1
+    //a, b
+    struct Concurso
+    {
+        int id;
+        int ponto[18];
+    };
+    int resultado=0;
+    Concurso Gustavo;
+    printf("Insira a id do participante:")
+    scanf("%d", &Gustavo.id);
+    for(int i=0; i<18; i++)
+    {
+    printf("Insira o valor da %d questao", i+1);
+    scanf("%d",&Gustavo.ponto[i]);
+    } 
+
+    for(int i=0; i<18; i++)
+    {
+    resultado+=Gustavo.ponto[i];
+    }    
+    printf("A soma da pontuacao do candidato %d foi de %d", Gustavo.id, resultado);
+    //qst c
+    int x;
+   printf("Quantas questoes tem o concurso?\n");
+   scanf("%d", &x);
+   struct Concurso
+    {
+        int id;
+        int pontos[x];
+    };
+    struct Concurso Gustavo;
+    int soma=0;
+    printf("Insira a id do participante:\n");
+    scanf("%d", &Gustavo.id);
+    for(int i =0; i<x;i++ )
+    {
+    printf("Insira o ponto conquisitado pelo participante na questao %d:\n", i+1);
+    scanf("%d", &Gustavo.pontos[i]);
+    soma+=Gustavo.pontos[i];
+    }
+    printf("A soma total das qsts de %d e: %d",Gustavo.id,soma);
+
+//qst 3
+    imprime(10);
+*/
+    
+
+
+
+    return 0;
+}
