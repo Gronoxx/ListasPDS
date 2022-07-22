@@ -1,0 +1,108 @@
+#include <stdio.h>
+#define PI 3.1415
+#include <math.h>
+
+/*
+1. Escreva funções em C++ que resolvem os seguintes problemas:
+a) Média: calcula a média de a, b e c.
+b) Média ponderada: calcula a média ponderada de a, b e c onde a tem peso 3, b 4 e c 5.
+c) Perímetro: calcula o perímetro de um círculo de raio r.
+d) Área do círculo: calcula a área de um círculo de raio r.
+e) Área do triângulo: calcula a área de um triângulo de base b e altura c.
+f) Área da caixa: calcula a área de uma caixa de dimensões a, b e c.
+g) Volume da caixa: calcula o volume de uma caixa de dimensões a, b e c.
+h) Área do cilindro: calcula a área de um cilindro de raio r e altura h.
+i) Volume do cilindro: calcula o volume de um cilindro de raio r e altura h.
+j) Hipotenusa: calcula a hipotenusa de um triângulo retângulo com lados b e c.
+k) Raiz positiva: calcula a raiz positiva da equação do segundo grau definida por
+a.x2+b.x+c.
+2. Escreva programas em C++ para verificar se as funções do exercício anterior
+estão corretas.
+*/
+float media(float a, float b, float c)
+{
+    float media1= (a+b+c)/3;
+    return media1;
+}
+float media_Ponderada(float a,float b, float c)
+{
+    float media_Ponderada1=(a*3+b*4+c*5)/12;
+    return media_Ponderada1;
+}
+float perimetro(float r)
+{
+    float perimetro1=2*PI*r;
+    return perimetro1;
+}
+float areacirculo(float r)
+{
+    float areacirculo1= PI*r*r;
+    return areacirculo1;
+}
+float areatriangulo(float b, float c)
+{
+    float areatriangulo1= b*c/2;
+    return areatriangulo1;
+}
+float areacaixa(float a,float b, float c)
+{
+    float areacaixa1= (a*b+a*c+b*c)*2;
+    return areacaixa1;
+}
+float VolumeCaixa(float a, float b, float c)
+{
+        float VolumeCaixa1= a*b*c;
+        return VolumeCaixa1;
+}
+float AreaCilindro(float r, float h)
+{
+    float AreaCilindro1= (2*PI*r*(h+r));
+    return AreaCilindro1;
+}
+float VolumeCilindro(float r,float h)
+{
+    float VolumeCilindro1=(2*PI*r*(h+r))*h;
+    return VolumeCilindro1;
+}
+float Hipotenusa (float b,float c)
+{
+    float Hipotenusa1= sqrt( (b*b + c*c) );
+    return Hipotenusa1;
+}
+float Raiz(float a, float b, float c)
+{
+    float Raiz1=((-b+sqrt((b*b)+(-4*a*c)))/(2*a));
+    return Raiz1;
+}
+
+int main()
+{
+    float a,b,c,r,h;
+      printf("Entre com o valor de 'a' \n");
+    scanf("%f", &a);
+
+    printf("Entre com o valor de 'b' \n");
+    scanf("%f", &b);
+
+    printf("Entre com o valor de 'c' \n");
+    scanf("%f", &c);
+
+    printf("Entre com o valor de 'h' \n");
+    scanf("%f", &h);
+
+    printf("Entre com o valor de 'raio' \n");
+    scanf("%f", &r);
+    
+    printf("a) Media =%f\n",media(a,b,c));
+    printf("b) Media Ponderada =%f\n",media_Ponderada(a,b,c));
+    printf("c) Perimetro=%f\n", perimetro(r));
+    printf("d) Area do Circulo= %f \n",areacirculo(r));
+    printf("e) Area do Triangulo= %f \n", areatriangulo(b,c));
+    printf("f) Area da Caixa= %f \n", areacaixa(a,b,c));
+    printf("g) Volume da caixa= %f \n", VolumeCaixa(a,b,c));
+    printf("h) Area do Cilindro= %f \n", AreaCilindro(r,h));
+    printf("i) Volume do Cilindro= %f \n",VolumeCilindro(r,h));
+    printf("j) Hipotenusa= %f \n",Hipotenusa(b,c));
+    printf("k) Raiz Positiva= %f \n", Raiz(a,b,c));
+    return 0;
+}
