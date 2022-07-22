@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <stdbool.h>
+/*
+1. Escreva um programa em C++ que lê de um arquivo o número de linhas, o número de
+colunas e todos os coeficientes de uma matriz.
+2. Escreva uma função que recebe uma matriz quadrada de dimensão n e que retorna a
+média dos elementos armazenados na matriz. O cabeçalho da função deve ser o seguinte:
+float media_matriz(int n, float mat[][100])
+3. Escreva uma função que recebe uma matriz quadrada A de dimensão n e que transforma
+A em uma matriz identidade. O cabeçalho da função deve ser o seguinte:
+void identidade(int n, float A[][100])
+4. Escreva uma função que recebe uma matriz quadrada A de dimensão n e que retorna
+uma matriz T que é a transposta de A. O cabeçalho da função deve ser o seguinte:
+void transposta(int n, float A[][100], float T[][100])
+5. Escreva uma função que testa se uma matriz quadrada A de dimensão n é simétrica. O
+cabeçalho da função deve ser o seguinte:
+bool simetrica(int n, float A[][100])
+6. Escreva uma função que recebe duas matrizes quadradas A e B de dimensão n e que
+retorna uma matriz S que é a soma de A e B. O cabeçalho da função deve ser o seguinte:
+void soma_matriz(int n, float A[][100], float B[][100], float S[][100])
+7. Escreva uma função que recebe duas matrizes quadradas A e B de dimensão n e que
+retorna uma matriz P que é o produto de A e B. O cabeçalho da função deve ser o seguinte:
+void mult_matriz(int n, float A[][100], float B[][100], float P[][100])
+*/
+float media_matriz(int n, float matriz[][100])
+{
+    float soma=0;
+    for (int i=0;i<n;i++)
+    {
+        for (int j=0; j <n; j++)
+        {
+            soma+= matriz[i][j];
+        }
+    }
+    
+}
+void identidade(int n, float A[][100])
+{
+    for (int i=0; i<n; i++)
+     {
+        for(int j=0;j<n;j++)
+        {
+            if (j==i)
+            A[i][j]=1;
+            else
+            A[i][j]=0;
+        }
+     }
+
+}
+void transposta(int n, float A[][100], float T[][100])
+{
+    int countlinha,countcoluna;
+    for ( countlinha = 0; countlinha < n; countlinha++)
+    {
+        for (countcoluna = 0; countcoluna <n; countcoluna++)
+        {
+                T[countlinha][countcoluna]=A[countcoluna][countlinha];
+        }     
+    }
+}
+  bool simetrica(int n, float A[][100])
+{
+    float T[100][100];
+    transposta(n,A,T);
+
+    for ( int countlinha = 0; countlinha < n; countlinha++)
+    {
+        for (int countcoluna = 0; countcoluna <n; countcoluna++)
+        {
+            if (T[countlinha][countcoluna]!=A[countlinha][countcoluna])
+            {
+                return false;
+            }
+            
+        }     
+    }
+    return true;
+}
+void soma_matriz(int n, float A[][100], float B[][100], float S[][100])
+{
+      for ( int countlinha = 0; countlinha < n; countlinha++)
+    {
+        for (int countcoluna = 0; countcoluna <n; countcoluna++)
+        {
+        S[countlinha][countcoluna]=B[countlinha][countcoluna] ;
+        }     
+
+    }
+}
+void mult_matriz(int n, float A[][100], float B[][100], float P[][100])
+{
+    int countIND;
+    for (int linha=0;linha<n;linha++)
+    { 
+        for (int coluna=0;coluna<n;coluna++)
+        { 
+                for (countIND=0; countIND<n;countIND++)
+                    {
+                     P[linha][coluna]+=A[linha][countIND]*B[countIND][coluna];
+                    }
+        }
+    }
+    
+}
+
+int main()
+{
+    FILE * file=fopen("D:\\Arquivos C\\Matrizes.txt", "r");
+    int linhas,colunas;
+    fscanf(file,"%d",&linhas);
+    fscanf(file,"%d",&colunas);
+    float matrix [100][100];
+    for (int i=0;i<linhas;i++)
+    {
+        for (int j=0; j < colunas; j++)
+        {
+            fscanf(file,"%f", &matrix [i][j]);
+        }
+    }
+
+return 0;
+}
