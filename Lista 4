@@ -1,0 +1,296 @@
+#include <stdio.h>
+/*
+1. Escreva as seguintes funções recursivas em C++:
+a) fat(n): retorna o valor do fatorial de n.
+b) mdc(a,b): retorna o máximo divisor comum entre a e b.
+c) mdc3(a,b,c): retorna o máximo divisor comum entre a, b e c.
+d) fib(n): retorna o n-ésimo termo da série de Fibonacci
+e) primo(x): predicado que testa se um número x é primo.
+f) decrescente(x): procedimento que escreve uma seqüência de inteiros menores que x e
+maiores que 0.
+g) res(a,b): retorna o resto da divisão entre a e b.
+h) form(n): retorna o valor do somatório de i*i, com i variando de 1 até n.
+i) mmc(a, b): retorna o menor múltiplo comum de a e b.
+j) div(a, b): retorna o resultado da divisão inteira de a por b.
+l) sqrt(n): retorna a raiz quadrada de n (com precisão de 0.001).
+m) dig(n): retorna a soma dos dígitos de um inteiro positivo n.
+A soma dos dígitos de 132, por exemplo, é 6.
+n) exp(k, n): retorna k
+n
+o) crescente(x): escreve em ordem crescente, todos os inteiros maiores que 0 e menores ou
+iguais a x.
+2. Escreva programas em C++ para testar todas as funções definidas acima.
+*/
+int fat(int n)
+{ 
+    int fatorial;
+    if (n==0)
+    fatorial= 1;
+    else
+    fatorial=n*fat(n-1);
+    return fatorial;
+}
+int mdc(int a, int b)
+{
+    int x;
+    if (a==b)
+    return a;
+    if (a>b) 
+    {
+      if((a%b)==0)
+      return b;
+      else
+      {
+        x=a%b;
+        return mdc(b,x);
+      }      
+    }
+    if (b>a)
+    {
+      if(b%a==0)
+      return a;
+      else
+      {
+        x=b%a;
+        return mdc(a,x);
+      }      
+    }
+}
+int mdc3(int a, int b, int c)
+{
+    
+    int x;
+    if((a==b) && (a==c))
+    return a;
+    if ((b>=a) && (c<=a) && (c<=b))
+    return mdc3(b,a,c);
+    if ((b>=a) && (c>=a) && (c<=b))
+    return mdc3 (b,c,a);
+    if ((c>=a) && (a>=b))
+    return mdc3(c,a,b);
+    if ((c>=b) && (b>=a))
+    return mdc3(c,b,a);
+    if((a>=c)&&(c>=b))
+    return mdc3(a,c,b);
+    if (a>b) 
+    {
+      if((a%b)==0 && (c%b)!=0)
+      x=mdc(c,b);
+      if((a%b)!=0)
+      {
+        x=a%b;
+        return mdc(b,x);
+      }
+      if((a%b)==0 &&(c%b)==0)
+      return x;
+    }
+}
+int fib(int n)
+{
+    int b;
+    if (n==-1 || n==0)
+        return 0;
+    if(n==1)
+        return 1;
+    else
+    {
+        /f(n)= f(n-1) + f(n=-2)/
+        b=fib(n-1)+fib(n-2);
+    }
+return b; 
+}
+int primo(int x)
+{
+ 
+        static int a;
+        a+=1;
+        if (a==x)
+        return 1;
+        if(x==1)
+        return 0;
+        if((x % a)==0 && (a!=1))
+        return 0;
+        else
+        return primo(x);
+        
+}
+int decrescente(int x)
+{
+     if(x==0)
+     return 0;
+     if(x>0)
+     {
+         printf("%d\n",x);
+         decrescente (x-1);
+     }
+     if (x<0)
+     printf("Valor invalido");
+}
+int res(int a,int b)
+{
+    int resultado;
+    if (a>=b)
+    {
+      res((a-b),b);  
+    }
+    else
+    return a;
+}
+int form(int n)
+{
+    int resultado;
+    if(n>0)
+    {
+    resultado=(n*n) + form(n-1) ;
+    return resultado;
+    }
+    if(n==0)
+    return 0;
+    if(n<0)
+    printf("Valor Invalido");
+}
+int mmc (int a , int b)
+{
+    static int c;
+    c=c+1;
+    if(a%b!=0)
+    {
+     printf("%d\n", a);
+     return mmc(a+((a+a)/c),b);
+    }
+    if(a%b==0)
+    return a;
+    
+}
+int divi(int a, int b)
+{
+    if(a>=b)
+    {
+    return 1+divi(a-b,b);
+    }
+    else 
+    return 0;
+}
+float sqrta(float n)
+{
+    static float a;
+    a+=0.0001;
+    if(a*a<n)
+    return sqrta (n);
+    else 
+    {
+    a=a-0.0001;
+    return a;
+    }   
+    }
+int dig (int n)
+{
+    if (n>10)
+    return n%10+dig(n/10);
+    if (n<10)
+    return n;
+}
+int expo(int k,int n)
+{
+    if (n==0)
+    return 1;
+    if (n>0)
+    return k*expo(k,n-1);
+    if (n<0)
+    {
+    printf("Valor Invalido\n");
+    return 0;
+    }
+
+}
+int crescente(int x)
+{
+   if(x>0)
+   {
+      crescente (x-1);
+    printf("%d\n", x);
+   }
+   else 
+   return 0;
+}
+
+int main()
+{
+    int x,k,n,a,b,c,resultado;
+    float d;
+    printf("Insira n:\n");
+    scanf("%i",&n);
+    n=fat (n);
+    printf("o fatorial e %i\n",n);
+    printf("Insira a:\n");
+    scanf("%i",&a);
+    printf("Insira b:\n");
+    scanf("%i",&b);
+    resultado=mdc(a,b);
+    printf("o mdc e %i\n",resultado);
+    printf("Insira a:\n");
+    scanf("%i",&a);
+    printf("Insira b:\n");
+    scanf("%i",&b);
+    printf("Insira c:\n");
+    scanf("%i",&c);
+    resultado=mdc3(a,b,c);
+    printf("o mdc e %i\n",resultado);
+    printf("Insira n:\n");
+    scanf("%i",&n);
+    resultado=fib(n);
+    printf("o n-esimo numero de fibonacci e %i\n",resultado);
+    printf("Insira x:\n");
+    scanf("%i",&x);
+    resultado= primo(x);
+    if (resultado==0)
+    printf("Nao primo\n");
+    if (resultado==1)
+    printf("primo\n");
+    printf("Insira x:\n");
+    scanf("%i",&x);
+    decrescente(x);
+    printf("Insira a:\n");
+    scanf("%i",&a);
+    printf("Insira b:\n");
+    scanf("%i",&b);
+    resultado=res(a,b);
+    printf("o resto da divisao e %i\n",resultado);
+    printf("Insira n:\n");
+    scanf("%i",&n);
+    resultado= form(n);
+    printf("o somatorio dos quadrados de 0 ate n e %i\n",resultado);
+    printf("Insira a:\n");
+    scanf("%i",&a);
+    printf("Insira b:\n");
+    scanf("%i",&b);
+    resultado=mmc(a,b);
+    printf("o mmc e %i\n",resultado);
+    printf("Insira n:\n");
+    scanf("%f",&d);
+    d= sqrta(d);
+    printf("a raiz quadrada e %f\n",d);
+    printf("Insira n:\n");
+    scanf("%i",&n);
+    resultado= dig(n);
+    printf("a soma absoluta e %i\n",resultado);
+    printf("Insira a:\n");
+    scanf("%i",&a);
+    printf("Insira b:\n");
+    scanf("%i",&b);
+    resultado=divi(a,b);
+    printf("o quociente e %i\n",resultado);
+    printf("Insira k:\n");
+    scanf("%i",&k);
+    printf("Insira n:\n");
+    scanf("%i",&n);
+    resultado=expo(k,n);
+    printf("k elevado a n e %i\n",resultado);
+    printf("Insira x:\n");
+    scanf("%i",&x);
+    crescente(x);
+    
+
+    return 0;
+
+}
