@@ -1,0 +1,199 @@
+#include <stdio.h>
+#include <math.h>
+/*
+Parte I: Pontos
+1. Implemente a seguinte estrutura de dados em C++ que representa pontos em um espaço
+euclidiano:
+struct Ponto {
+ float x;
+ float y;
+ float distancia(Ponto& p);
+ void atribuir(float a, float b);
+};
+2. Implemente o método float Ponto::distancia(Ponto& p) que calcula a distância entre o
+ponto corrente (aquele que chama o método) e o ponto p passado como parâmetro.
+3. Implemente o método void Ponto::atribuir(float a, float b) que atribui respectivamente os
+valores a e b as coordenadas x e y do ponto corrente.
+Parte II: Triângulos.
+4. Utilizando o tipo de dados Ponto, defina um tipo de dado Triangulo, que representa um
+triângulo num espaço euclidiano.
+5. Implemente um método float Triangulo::perimetro() que retorna o perímetro do triângulo
+corrente (aquele que chama o método).
+6. Implemente um método float Triangulo::area() que retorna a área do triângulo corrente.
+7. Implemente um método bool Triangulo::equilatero() que testa se o triângulo corrente é
+equilátero.
+8. Implemente um método bool Triangulo::semelhante(Triangulo& t) que testa se o triângulo
+t é semelhante ao triângulo corrente.
+Parte III: Retângulos.
+9. Utilizando o tipo de dados Ponto, defina um tipo de dado Retangulo, que representa um
+retângulo num espaço euclidiano.
+10. Implemente um método float Retangulo::perimetro() que retorna o perímetro do
+retângulo corrente (aquele que chama o método).
+11. Implemente um método float Retangulo::area() que retorna a área do retângulo corrente.
+12. Implemente um método bool Retangulo::quadrado() que testa se o retângulo corrente é
+quadrado.
+Parte IV: Circunferência.
+13. Defina o tipo de dados Circunferencia. Pense bem em quais os dados que definem uma
+circunferência.
+14. Implemente um método float Circunferencia::perimetro() que retorna o perímetro
+da circunferência corrente (aquele que chama o método).
+15. Implemente um método float Circunferencia::area() que retorna a
+área da circunferência corrente.
+16. Implemente um método bool Circunferencia::contem(Ponto& p) que testa se o
+ponto p está dentro da circunferência corrente.
+17. Implemente um método bool Circunferencia::contem(Triangulo& p) que testa se o
+triângulo t está dentro da circunferência corrente.
+18. Implemente um método bool Circunferencia::contem(Retangulo& r) que testa se o
+retângulo r está dentro da circunferência corrente.
+19. Implemente um método bool Circunferencia::pertence(Ponto& p) que testa se o ponto p
+está na linha definida pela circunferência corrente.
+20. Implemente um método bool Circunferencia::circunscrita(Triangulo& t) que testa
+se a circunferência corrente é circunscrita ao triângulo t.
+21. Implemente um método bool Circunferencia::circunscrita(Retangulo& r) que testa
+se a circunferência corrente é circunscrita ao retângulo r.
+*/
+
+
+int main()
+{
+    
+ struct Ponto {
+ float x;
+ float y;
+
+float distancia (struct Ponto p)
+{
+    float dx,dy,d;
+    dx=p.x - x;
+    dy=p.y - y;
+    d=sqrt(dx*dx+dy*dy);
+    return d;
+}
+ void atribuir(float a, float b)
+ {
+    x=a;
+    y=b;
+ }
+ 
+};
+struct Triangulo
+{
+    Ponto a;
+    Ponto b;
+    Ponto c;
+    float perimetro()
+    {
+        return a.distancia(b)+b.distancia(c)+c.distancia(a);
+    }
+    float area()
+    {
+        return sqrt(perimetro()/2*(perimetro()/2)-a.distancia(b))*((perimetro()/2)-b.distancia(c))*((perimetro()/2)-c.distancia(a));
+    }
+    bool equilatero()
+    {
+        if((a.distancia(b)==b.distancia(c))&&(b.distancia(c)==c.distancia(a)))
+        return true;
+        else
+        return false;
+    }
+    bool semelhante(Triangulo t)
+    {
+        float prop;
+        prop=  a.distancia(b)/t.a.distancia(t.b);
+        if ((t.b.distancia(t.c)*prop == b.distancia(c)) && (t.c.distancia(t.a)*prop == c.distancia(a)))
+        return true;
+        else 
+        return false;         
+    }
+    struct Retangulo
+    {
+        /*Estou considerando que os pontos que forem informados formem necessariamente um retangulo
+        não havendo uma fiscalização se os pontos são de fato um retângulo, de maneira que caso os quatro pontos
+        não formarem um retângulo os métodos e todos os dados obtidos serão errados*/
+        Ponto r1;
+        Ponto r2;
+        Ponto r3;
+        Ponto r4;
+        float lado1 = r1.distancia(r2);
+        float lado2 = r2.distancia(r3);
+        float lado3 = r3.distancia(r4);
+        float lado4 = r4.distancia(r1);
+        float perimetro()
+        {
+            return lado1+lado2+lado3+lado4;
+        }
+        float area ()
+        {
+            if(lado1!=lado2)
+            return lado1*lado2;
+            else
+            return lado1*lado3;
+        }
+        bool quadrado()
+        {
+            if((lado1==lado2)&&(lado2==lado3))
+            return true;
+            else
+            return false;
+        }
+    struct Circunferencia
+    {
+        Ponto origem;
+        float raio;
+        float perimetro()
+        {
+            return 2*3.1415*raio;
+        }
+        float area()
+        {
+            return 3.1415*raio*raio;
+        }
+        bool contem(Ponto p)
+        {
+            if (p.distancia(origem)<=raio) 
+            return true;
+            else
+            return false;
+        }
+        bool contem2(Triangulo t)
+        {
+           if((contem(t.a))&&(contem(t.b))&&(contem(t.c))) 
+           return true;
+           else
+           return false;
+        }
+        bool contem3(Retangulo r)
+        {
+            if((contem(r.r1))&&(contem(r.r2))&&(contem(r.r3))&&(contem(r.r4)))
+            return true;
+            else
+            return false; 
+        }
+        bool pertence(Ponto p)
+        {
+            if (p.distancia(origem)==raio)
+            return true;
+            else
+            return false;  
+        }
+        bool circunscrita(Triangulo t)
+        {
+            if(pertence(t.a) && pertence(t.b) && pertence(t.c))
+            return true;
+            else
+            return false;
+        }
+        bool circunscrita2(Retangulo r)
+        {
+            if(pertence(r.r1) && pertence(r.r2) && pertence(r.r3) && pertence(r.r4))
+            return true;
+            else
+            return false;
+        }
+    };
+    
+    };
+    
+};
+return 0;
+}
