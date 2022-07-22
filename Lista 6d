@@ -1,7 +1,7 @@
 #include <stdio.h>
 /*Escreva um programa em C++ que lê um arquivo com números reais (um número por linha) e
 grava outro arquivo onde cada linha mostra o valor do respectivo número aplicado a função
-f(x)= x2- 5x + 1.*/
+f(x)= x^2- 5x + 1.*/
 int main(void)
 {
     FILE * file;
