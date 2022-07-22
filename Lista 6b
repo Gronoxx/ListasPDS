@@ -1,0 +1,43 @@
+#include <stdio.h>
+/*
+Escreva um programa em C++ que lê um arquivo com números naturais (um número por
+linha) e grava outro arquivo onde cada linha indica se o respectivo número é primo ou não.
+
+*/
+int main(void)
+{
+    FILE * file1;
+    file1= fopen("D:\\Arquivos C\\Teste6.txt", "r");
+    FILE* file;
+    file= fopen("Resposta 6 b.txt", "w");
+      
+      if(( file1 == NULL)||(file == NULL))
+    {
+        printf("Arquivo nao pode ser lido");
+        exit(0);
+    }    
+    int i=0;
+    int a,aux,b;
+    aux=0;
+    int numero[10];
+    while (fgets(numero,10,file1)!=NULL)
+    {
+        fscanf(file1, "%d", &a);
+        b=a-1;
+        while(b>1)
+        {
+        if (a%b==0)
+        {
+         aux=1;
+        }
+        b--;   
+        }
+        if(aux==0)
+        fprintf(file,"%d Primo\n",a);
+        else
+        fprintf(file,"%d NAO Primo\n",a);  
+        aux=0;  
+    }
+    
+    return 0;
+}
