@@ -1,0 +1,46 @@
+#include <stdio.h>
+/*
+Escreva um programa em C++ que lê um arquivo com números naturais e gera dois arquivos:
+“primos.txt” com aqueles números que são primos e “outros.txt” com aqueles números que não
+são primos.
+*/
+int main(void)
+{
+    FILE * file1;
+    file1= fopen("D:\\Arquivos C\\Teste6.txt", "r");
+    FILE* file;
+    file= fopen("Resposta 6 c nao primo.txt", "w");
+    FILE* file3;
+    file3= fopen("Resposta 6 c primo.txt", "w");  
+      if(( file1 == NULL)||(file == NULL)||(file3 == NULL))
+    {
+        printf("Arquivo nao pode ser lido");
+        exit(0);
+    }    
+    int i=0;
+    int a,aux,b;
+    aux=0;
+    int numero[10];
+    while (fgets(numero,10,file1)!=NULL)
+    {
+        fscanf(file1, "%d", &a);
+        b=a-1;
+        while(b>1)
+        {
+        if (a%b==0)
+        {
+         aux=1;
+        }
+        b--;   
+        }
+        if(aux==0)
+        fprintf(file3,"%d \n",a);
+        else
+        fprintf(file,"%d \n",a);  
+        aux=0;  
+    }
+    fclose(file);
+    fclose(file1);
+    fclose(file3);
+    return 0;
+}
