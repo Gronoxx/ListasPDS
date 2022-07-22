@@ -1,0 +1,154 @@
+
+#include <stdio.h>
+#include <math.h>
+/*
+1.
+a. Descrever em C um tipo para um registro que contenha o número de identificação de um
+indivíduo, um conjunto de pontos (até 18) - em valores inteiros - conseguidos por ele(a) nas
+questões de um concurso.
+b. Escrever um programa principal que defina uma variável do tipo descrito em (a), leia os
+pontos obtidos por um indivíduo e imprima a soma os pontos.
+c. Altere o programa feito em b) para que a descrição do registro deixe em aberto o
+tamanho do vetor e utilize a função definida em 1a) para alocá-lo, conforme o número de
+questões do concurso fornecido pelo usuário.
+2. a. Escreva uma função que recebe como entrada um vetor de números inteiros e devolve
+como saída o maior valor pertencente ao vetor.
+3. (Google Maps) Crie o tipo de dados “Restaurante” que possui como componentes as
+coordenadas de localização X e Y, o nível de preço,e o nome do restaurante. Assuma que
+essas informações estejam em um arquivo o qual possa ser lido.
+a. Faça uma função que imprima todos os restaurantes localizados a um raio de
+distância de no máximo m metros.
+b. Faça uma função que imprima todos os restaurantes localizados a um raio de
+distância de no máximo m metros, e cujo preço não ultrapasse r reais.
+*/
+//qst3
+struct Restaurante
+{
+    int x;
+    int y;
+    int nvlPreco;
+    char nome[500];
+};
+struct User
+{
+    int x;
+    int y;    
+}user={0,0};
+
+//qst2
+int maior(int vec[], int tamanho)
+{
+    int resultado=vec[0];
+    for(int i=1; i<tamanho;i++)
+    {
+    if(resultado<vec[i])
+    resultado=vec[i];
+    }
+    return resultado;
+}
+//qst3
+void imprime(struct Restaurante restaurantes[],int m, int qntd)
+{
+    for (int i = 0; i <qntd ; i++)
+    {  
+    if(sqrt(pow((restaurantes[i].x),2)+pow((user.y-restaurantes[i].y),2))<=m)
+    printf("%s\n", restaurantes[i].nome);
+    }  
+}
+//qst3
+void imprimepreco(struct Restaurante restaurantes[],int m, int qntd,int preco)
+{
+for (int i = 0; i <qntd ; i++)
+    {  
+    if((sqrt(pow((restaurantes[i].x),2)+pow((user.y-restaurantes[i].y),2))<=m) && (restaurantes[i].nvlPreco<=preco))
+    printf("%s\n", restaurantes[i].nome);
+    } 
+}
+
+int main()
+{
+/*
+// Questao 1 a
+struct Concurso
+{
+    int id;
+    int pontos[18];
+};
+struct Concurso User;
+
+printf("Insira o numero de id\n");
+scanf("%d", &User.id);
+int soma=0;
+int i;
+for (i=0; i<18; i++)
+{
+printf("Insira o ponto da questao %d:", i+1);
+scanf("%d", &User.pontos[i]);
+soma+=User.pontos[i];
+}
+printf("A soma dos pontos e: %d", soma);*/
+
+/*
+// 1b e c
+int tamanho;
+printf("Insira quantas questoes tem o consurso:");
+scanf("%d", &tamanho);
+
+struct Concurso
+{
+    int id;
+    int pontos[tamanho];
+};
+struct Concurso User;
+printf("Insira o numero de id\n");
+scanf("%d", &User.id);
+int soma=0;
+int i;
+for (i=0; i<tamanho; i++)
+{
+printf("Insira o ponto da questao %d:", i+1);
+scanf("%d", &User.pontos[i]);
+soma+=User.pontos[i];
+}
+printf("A soma dos pontos e: %d", soma);
+ */
+//2
+/*
+int tamanho;
+printf("Insira o tamanho de um vetor:");
+scanf("%d", &tamanho);
+int vec[tamanho];
+for(int i =0; i<tamanho;i++)
+{
+    printf("Insira o %d elemento do vetor:", i+1);
+    scanf("%d", &vec[i]);
+}
+printf("O maior elemento e: %d",maior(vec,tamanho));
+*/
+//qst 3
+
+FILE*file=fopen("E:\\Arquivos C\\Restaurantes.txt" ,"r+t");
+int qtndrst;
+printf("Insira quantos restaurantes tem no arquivo:\n");
+scanf("%d",&qtndrst);
+struct Restaurante restaurantes[qtndrst];
+for (int i = 0; i < qtndrst; i++)
+{
+    fscanf(file,"%d",&restaurantes[i].x);
+    fscanf(file,"%d",&restaurantes[i].y);
+    fscanf(file,"%d",&restaurantes[i].nvlPreco);
+    fscanf(file,"%s", restaurantes[i].nome);
+}
+int m,preco;
+printf("Insira a distancia maxima:");
+scanf("%d", &m);
+printf("Insira o nvl de preco maximo\n :");
+scanf("%d",&preco);
+printf("Os restaurantes perto de voce sao:\n");
+imprime(restaurantes,m,qtndrst);
+printf("Dentre estes os que estao dentro da faixa de preco sao:\n");
+imprimepreco(restaurantes,m,qtndrst,preco);
+
+return 0;
+
+}
