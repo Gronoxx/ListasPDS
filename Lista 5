@@ -1,0 +1,248 @@
+#include <stdio.h>
+/*
+1. Escreva as seguintes funções utilizando estruturas de repetição em C++:
+a) fat(n): retorna o valor do fatorial de n.
+b) mdc(a,b): retorna o máximo divisor comum entre a e b.
+c) mdc3(a,b,c): retorna o máximo divisor comum entre a, b e c.
+d) fib(n): retorna o n-ésimo termo da série de Fibonacci
+e) primo(x): predicado que testa se um número x é primo.
+f) decrescente(x): procedimento que escreve uma seqüência de inteiros menores que x e
+maiores que 0.
+g) res(a,b): retorna o resto da divisão entre a e b.
+h) form(n): retorna o valor do somatório de i*i, com i variando de 1 até n.
+i) mmc(a, b): retorna o menor múltiplo comum de a e b.
+j) div(a, b): retorna o resultado da divisão inteira de a por b.
+l) sqrt(n): retorna a raiz quadrada de n (com precisão de 0.001).
+m) dig(n): retorna a soma dos dígitos de um inteiro positivo n.
+A soma dos dígitos de 132, por exemplo, é 6.
+n) exp(k, n): retorna k
+n
+o) crescente(x): escreve em ordem crescente, todos os inteiros maiores que 0 e menores ou
+iguais a x.
+*/
+int fat (int n)
+{
+    int resultado=1;
+    if ((n==1) || (n==0))
+    return 1;
+    while (n>1)
+    {
+        resultado=resultado*n;
+        n=n-1;
+        }
+    return resultado;
+}
+
+int mdc(int a, int b)
+{
+    int x;
+    if (a==b)
+    return a;
+    if (a>b) 
+    {
+        while(a%b!=0)
+        {
+        x=a%b;
+        a=b;
+        b=x;
+        }
+        return b;
+    }
+    if (b>a)
+    {
+      while(b%a!=0)
+        {
+        x=b%a;
+        b=a;
+        a=x;
+        }
+        return a;
+    }
+}
+int fib(int n)
+{
+    int resultado;
+    int a,b;
+    a=1;
+    b=0;
+    if(n==1)
+    return 1;
+    else
+    for (n;n>1;n--)
+    {
+        resultado= a+b;
+        b=a;
+        a=resultado;
+    }
+    return resultado;
+}
+int primo(int x)
+{
+    int i=x-1;
+    for(i;i>1;i--)
+    {
+        if (x%i==0)
+        return 0;
+    }
+    return 1;
+}
+int decrescente(int x)
+{
+    for (x;x>0;x--)
+    printf("%d\n",x);
+}
+int res(int a,int b)
+{
+    int aux,aux1;
+    if (b>a)
+    {
+        printf("O primeiro e o segundo valor foram invertidos para que fosse póssivel o calculo\n");
+        aux1=a;
+        a=b;
+        b=aux1;
+    }
+    if(a==b)
+    return 0;
+    while (a>b)
+    {
+        a=a-b;
+    }
+    return a;
+}
+int form(int n)
+{
+    int resultado=0;
+    for(n;n>0;n--)
+            resultado= resultado+n*n;
+    return resultado;
+}
+int mmc(int a, int b)
+{
+    int count=1;
+    if(a>b)
+    {
+        while(a%b!=0)
+        {
+        a=a+(a/count);
+        count++;
+        }
+        return a;
+    }
+    if(b>a)
+    {
+        while(b%a!=0)
+        {
+        b=b+(b/count);
+        count++;
+        }
+        return b;
+    }
+    return a;
+}
+int divi(int a, int b)
+{
+   int aux,aux1,count;
+   count=0;
+    if (b>a)
+    {
+        printf("O primeiro e o segundo valor foram invertidos para que fosse póssivel o calculo\n");
+        aux1=a;
+        a=b;
+        b=aux1;
+    }
+    if(a==b)
+    return 0;
+    while (a>b)
+    {
+        a=a-b;
+        count++;
+    }
+    return count;
+}
+float sqrta(float n)
+{
+    int count;
+    for(count=1;((0.0001*count)*(0.0001*count))<n;count++)
+    {}
+    return (0.0001*count);
+    
+}
+int dig(int n)
+{
+    int aux=0;
+    while(n>10)
+    {
+        aux=aux+n%10;
+        n=n/10;
+    }
+    aux=aux+n;
+    return aux;
+}
+int  expo(int k, int n)
+{
+    int count, aux;
+    aux=k;
+    for (count=1;count<n;count++)
+    {
+    k=k*aux;
+    }
+    return k;
+}
+int crescente(int x)
+{
+    int count;
+    for(count=1;count<=x;count++)
+    printf("%d\n",count);
+}
+int main()
+{
+    int n,x,a,b;
+    printf("Escolha o numero para calcular o fatorial\n");
+    scanf("%d",&n);
+    printf("O fatorial e %d\n", fat(n));
+    printf("Escolha dois numeros para calcular o mdc\n");
+    scanf("%i",&a);
+    scanf("%i",&b);
+    printf("O mdc e %d\n", mdc(a,b));
+    printf("Escolha o numero para calcular o n-esimo numero da sequencia de fibonnacci\n");
+    scanf("%d",&n);
+    printf("O n-esimo numero e %d\n", fib(n));
+    printf("Escolha o numero para testar se ele e primo\n");
+    scanf("%d",&x);
+    if (primo(x)==1)
+    printf("Primo\n");
+    if (primo(x)==0)
+    printf("Nao Primo\n");
+    printf("Escolha o numero para mostrar os antecessores\n");
+    scanf("%d",&x);
+    decrescente(x);
+    printf("Escolha dois numeros para mostrar o resto\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+    printf("O resto e %d\n", res(a,b));
+     printf("Escolha um numero para calcular o somatorio dos quadrado de 1 até n\n");
+    scanf("%d",&n);
+    printf("O somatorio e %d\n", form(n));
+    printf("Escolha dois numeros para calcular o mmc\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+    printf("o mmc e %d", mmc(a,b));
+     printf("Escolha dois numeros para calcular a divisao inteira\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+    printf("o resultado da divisao e %d", divi(a,b));
+    printf("Digite um numero para decobrir a raiz quadrada\n");
+    scanf("%d",&n);
+    printf("A raiz quadrada desse numero e %f\n",sqrta(n));
+    printf("Digite um numero para decobrir a soma de seus valores absolutos\n");
+    scanf("%d",&n);
+    printf("A soma e %d\n",dig(n));
+    printf("Digite dois numeros para calcular a^b\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+    printf("O resultado e %d\n",expo(a,b));
+    printf("Digite um numero para mostrar a ordem crescente ate ele\n");
+    scanf("%d",&a);
+    crescente(a);
+    return 0;
+}
