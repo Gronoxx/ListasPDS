@@ -1,0 +1,68 @@
+#include <stdio.h>
+/*
+1. Escreva as seguintes funções em C++:
+a) max(a,b,c): Retorna o maior dentre três números.
+b) min(a,b,c): Retorna o menor dentre três números.
+2. Escreva os seguintes predicados em C++:
+a) par(x): testa se um número é par;
+b) dentro(x,y,z): testa se o número x está dentro do intervalo [y z];
+c) fora(x,y,z): testa se o número x está fora do intervalo [y z];
+3. Defina o predicado bissexto(ano) que testa se um ano é bissexto. Considere que
+bissexto é aquele ano que é divisível por 400 ou é divisível por 4 e, nesse caso, não é
+divisível por 100. Por exemplo:
+bissexto(2000) --> verdadeiro
+bissexto(1900) --> falso
+bissexto(3600) --> verdadeiro
+bissexto(2004) --> verdadeiro
+*/
+
+int max(int a,int b, int c)
+{
+    if((a>=b) && (a>=c))
+    return a;
+    if((b>=a) && (b>=c))
+    return b;
+    if((c>=a) && (c>=b))
+    return c;
+}
+int min(int a, int b, int c)
+{
+    if((a<=b) && (a<=c))
+    return a;
+    if((b<=a) && (b<=c))
+    return b;
+    if((c<=a) && (c<=b))
+    return c;
+}
+int main()
+{
+    int x,y,z,a,b,c,recebe,recebe1,ano;
+    printf("Informe a:\n");
+    scanf("%d", &a);
+    printf("Informe b:\n");
+    scanf("%d", &b);
+    printf("Informe c:\n");
+    scanf("%d", &c);
+    recebe= max(a,b,c);
+    recebe1= min(a,b,c);
+    printf("Maior numero e %d\n",recebe);
+    printf("Menor numero e %d\n",recebe1);
+    printf("Informe o numero a ser analisado (par ou impar)\n");
+    scanf("%d", &x);
+    x%2==0? printf ("par\n") : printf("impar\n");
+    printf("Informe y\n");
+    scanf("%d",&y);
+    printf("Informe z\n");
+    scanf("%d",&z);
+    if ((x>y && x<z) || (x<y && x>z)) 
+    printf("%d esta no intervalo entre %d e %d\n", x,y,z);
+    else
+    printf("%d esta fora do intervalo entre %d e %d\n", x,y,z);
+    printf("Informe um ano:\n");
+    scanf("%d",&ano);
+    if ((ano%400==0) || (ano%4==0 && ano%100!=0))
+    printf("Ano bissexto");
+    else
+    printf("Ano nao bissexto");
+    return 0;
+}
