@@ -1,0 +1,25 @@
+#include <stdio.h>
+/*
+ Escreva um programa em C++ que lê um arquivo com números reais (um número por linha) e
+grava outro arquivo onde cada linha mostra o valor do respectivo número aplicado a função
+f(x)= ax^3+ bx^2+ c^x + d, onde a, b, c e d são lidos do teclado.
+*/
+int main(void)
+{
+    FILE * file;
+    file= fopen("D:\\Arquivos C\\Teste6reais.txt", "r");
+    FILE* file1;
+    file1= fopen("Resposta 6 e.txt", "w");
+    
+    float a,b,c,d,x;
+    float numero[10];
+    printf("Insira os valores de a,b,c,d da funcao ax3+bx2+cx+d:\n");
+    scanf("%f\n%f\n%f\n%f", &a,&b,&c,&d);
+    while (fgets(numero,10,file)!=NULL)
+    {
+        fscanf(file, "%f", &x);
+        fprintf(file1,"%f\n",(a*x*x*x+b*x*x+c*x+d));
+    }
+
+    return 0;
+}
