@@ -1,0 +1,36 @@
+#include<stdio.h>
+/*1. Suponha que um programa tenha os seguintes comandos:
+salary = 4000;
+rate = 0.1;
+increase = salary * rate + 100;
+salary = salary + increase;
+wageCut = 1 / 3 * salary
+Informe os valores das seguintes variáveis e expressões:
+salary:
+increase:
+wageCut:
+(wageCut>1000) and (salary==4000):
+
+Resposta:
+Informe os valores das seguintes variáveis e expressões:
+salary: 4500
+increase: 500
+wageCut: 1500
+(wageCut>1000) and (salary==4000): (true) && (false) == false
+
+2. Escreva uma função “triangulo_area” que recebe dois parâmetros (height e base) e
+retorna a área do triângulo correspondente
+3.Escreva uma função “triangulo_truncado” que também leva os parâmetros (height e
+base) como entrada, e calcula a área de um triângulo sem a ponta. A ponta também é
+um triângulo, sendo que sua altura e sua base correspondem a 10% da altura e base,
+respectivamente, do triângulo maior. Use a função “triangulo_area” em sua solução.
+*/
+
+float triangulo_area(float height, float base)
+{
+   return(base*height/2); 
+}
+float triangulo_truncado(float height, float base)
+{
+   return(triangulo_area(height,base)-triangulo_area(height/10,base/10)); 
+}
