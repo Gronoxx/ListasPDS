@@ -1,0 +1,21 @@
+#include <stdio.h>
+/*Escreva um programa em C++ que lê um arquivo com números reais (um número por linha) e
+grava outro arquivo onde cada linha mostra o valor do respectivo número aplicado a função
+f(x)= x2- 5x + 1.*/
+int main(void)
+{
+    FILE * file;
+    file= fopen("D:\\Arquivos C\\Teste6reais.txt", "r");
+    FILE* file1;
+    file1= fopen("D:\\Arquivos C\\Resposta 6 d.txt", "w");
+    
+    float x;
+    float numero[10];
+    while (fgets(numero,10,file)!=NULL)
+    {
+        fscanf(file, "%f", &x);
+        fprintf(file1,"%f\n",(x*x-5*x+1));
+    }
+
+    return 0;
+}
